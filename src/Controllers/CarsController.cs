@@ -1,6 +1,9 @@
+using CaseExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Pagination.Demo.Data;
+using Pagination.Demo.Helpers;
 using Pagination.Demo.Models;
+using System.Linq.Expressions;
 
 namespace Pagination.Demo.Controllers
 {
@@ -8,20 +11,89 @@ namespace Pagination.Demo.Controllers
     [Route("[controller]")]
     public class CarsController: ControllerBase
     {
-        private readonly ILogger<CarsController> _logger;
         private readonly CarDbContext _carDbContext;
 
-        public CarsController(ILogger<CarsController> logger, CarDbContext carDbContext)
+        public CarsController(CarDbContext carDbContext)
         {
-            _logger = logger;
             _carDbContext = carDbContext;
         }
 
-        [HttpGet("get-cars")]
+        [HttpGet]
         public ActionResult<IEnumerable<Car>> GetCars([FromQuery(Name = "page-number")] int pageNumber, [FromQuery(Name = "page-size")] int pageSize, [FromQuery] CarFilters filter)
         {
+            if(pageSize <= 0)
+            {
+                return StatusCode(400, "Page Size needs to be greater than 0.");
+            }
 
-            throw new NotImplementedException();
+            if(pageNumber <= 0)
+            {
+                return StatusCode(400, "Page Number needs to be greater than 0.");
+            }
+
+            int skip = (pageNumber - 1) * pageSize;
+
+            try
+            {
+                Expression<Func<Car, bool>> filterPredicate = c => true;
+
+                if(filter.NameLikeString != null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.Name.Trim().ToLower().Contains(filter.NameLikeString.Trim().ToLower()));
+                }
+
+                if(filter.IsSold != null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.IsSold == filter.IsSold);
+                }
+
+                if(filter.SoldBeforeDate!= null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.DateSold < filter.SoldBeforeDate);
+                }
+
+                if(filter.SoldAfterDate != null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.DateSold > filter.SoldAfterDate);
+                }
+
+                if(filter.PurchasedBeforeDate != null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.DatePurchased < filter.PurchasedBeforeDate);
+                }
+
+                if(filter.PurchasedAfterDate != null)
+                {
+                    filterPredicate = filterPredicate.And(c => c.DatePurchased > filter.PurchasedAfterDate);
+                }
+
+                if(filter.Condition != null)
+                {
+                    var conditions = new List<string>();
+
+                    foreach(var condition in filter.Condition)
+                    {
+                        conditions.Add(condition.ToTrainCase().Replace("-", " ").Trim().ToLower());
+                    }
+                    
+                    filterPredicate = filterPredicate.And(c => conditions.Contains(c.Condition.Trim().ToLower()));
+
+                }
+
+                var cars = _carDbContext.Set<Car>()
+                    .Skip(skip)
+                    .Take(pageSize)
+                    .Where(filterPredicate)
+                    .OrderBy(c => c.DatePurchased)
+                    .ToList();
+
+                return cars;
+
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }
