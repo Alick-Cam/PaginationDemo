@@ -1,0 +1,28 @@
+# Bui;d folders
+bin/
+obj/
+# User-specific files
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+# IDE-specific files
+.vs/
+.vscode/
+.idea/
+# NuGet Packages
+packages/
+*.nupkg
+# Environment-specific files
+.env
+appsettings.Development.json
+appsettings.Local.json
+# Logs
+*.log
+# Temporary files
+*.tmp
+*.temp
+# Publish Output
+wwwroot/
+

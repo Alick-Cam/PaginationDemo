@@ -1,0 +1,122 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Pagination.Demo.Models;
+
+namespace Pagination.Demo.Data
+{
+    public class CarDbContext: DbContext
+    {
+        public DbSet<Car> Cars { get; set; }
+
+        public CarDbContext(DbContextOptions<CarDbContext> options) : base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Car>().HasData(
+                new { Id = Guid.Parse("d5f2a4d6-3f6b-43b6-bcfa-991fad3b9e1c"), Name = "Santa Fe", Brand = "Hyundai", Condition = "Mint", DatePurchased = new DateTime(2021, 6, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("e0f6a687-8948-4d60-967b-ecad47a9b6d8"), Name = "Palisade", Brand = "Hyundai", Condition = "Like New", DatePurchased = new DateTime(2022, 3, 20), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("fa3e7fd1-4b7e-4f68-a8c6-85e8b9a6de69"), Name = "Tucson", Brand = "Hyundai", Condition = "New", DatePurchased = new DateTime(2023, 1, 18), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("bb5467d3-4d65-4f3a-bc4e-8e8e4a7f4c42"), Name = "Highlander", Brand = "Toyota", Condition = "Used", DatePurchased = new DateTime(2019, 8, 29), IsSold = true, DateSold = new DateTime(2022, 10, 14) },
+                new { Id = Guid.Parse("1a33c712-3c52-40d5-9c11-24f9bcf52f62"), Name = "RAV4", Brand = "Toyota", Condition = "Mint", DatePurchased = new DateTime(2021, 11, 21), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("319ad4d2-9e43-46e1-950d-1e5a679bc693"), Name = "4Runner", Brand = "Toyota", Condition = "Like New", DatePurchased = new DateTime(2022, 4, 28), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("74269c56-c022-4b9e-90d3-eccd9e5f6873"), Name = "Camry", Brand = "Toyota", Condition = "New", DatePurchased = new DateTime(2023, 2, 13), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2fda1b26-3650-4a8f-936d-730a2b89efc4"), Name = "Sequoia", Brand = "Toyota", Condition = "Used", DatePurchased = new DateTime(2018, 7, 12), IsSold = true, DateSold = new DateTime(2023, 3, 29) },
+                new { Id = Guid.Parse("a9d3e013-6e5b-4b28-9fa4-5dcdf4f3f9a9"), Name = "Avalon", Brand = "Toyota", Condition = "Mint", DatePurchased = new DateTime(2020, 5, 7), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("846e6b3d-39f4-4a2d-b29e-b4d294de4e34"), Name = "Sienna", Brand = "Toyota", Condition = "Like New", DatePurchased = new DateTime(2021, 12, 10), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("f9e87458-1c1c-4e5b-93db-4b4f9a4a2e8a"), Name = "Pathfinder", Brand = "Nissan", Condition = "New", DatePurchased = new DateTime(2022, 6, 25), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("b85e847f-3b67-4d6b-8b4c-74e8b2b3c7f2"), Name = "Armada", Brand = "Nissan", Condition = "Mint", DatePurchased = new DateTime(2023, 3, 18), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("e2c7b5e1-7e9e-4c1b-939b-c5e6b3b4f9a7"), Name = "Murano", Brand = "Nissan", Condition = "Used", DatePurchased = new DateTime(2019, 9, 23), IsSold = true, DateSold = new DateTime(2022, 12, 1) },
+                new { Id = Guid.Parse("ffb1a6b8-0b4d-42d8-9e4d-f7e7a5d2b8c4"), Name = "X-Terra", Brand = "Nissan", Condition = "Like New", DatePurchased = new DateTime(2021, 2, 20), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("55e3a9b2-4b6e-48e3-9f27-1c4f9a4b3e6a"), Name = "Altima", Brand = "Nissan", Condition = "Mint", DatePurchased = new DateTime(2022, 11, 8), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("b6f7c4e9-4d1b-4e2f-9e8d-1f2a4b7e6c9d"), Name = "Maxima", Brand = "Nissan", Condition = "New", DatePurchased = new DateTime(2023, 4, 27), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1d2f4b3d-9e5f-4a7e-b4c3-2f4b6e7a1d9c"), Name = "Leaf", Brand = "Nissan", Condition = "Used", DatePurchased = new DateTime(2018, 6, 9), IsSold = true, DateSold = new DateTime(2023, 1, 14) },
+                new { Id = Guid.Parse("7e4f3b5e-9c1d-4a7b-8f4e-5b6c9a7e1d2f"), Name = "Sentra", Brand = "Nissan", Condition = "Like New", DatePurchased = new DateTime(2021, 10, 22), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("c7a9b4d2-1d2e-4b6f-9a3d-6e7f2b9a5c4e"), Name = "Rogue", Brand = "Nissan", Condition = "Mint", DatePurchased = new DateTime(2022, 9, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("f4b2d3e1-4a6b-9e5d-3f2c-7e9a1d6c8b4f"), Name = "Frontier", Brand = "Nissan", Condition = "New", DatePurchased = new DateTime(2023, 5, 19), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2e75f8a7-8a62-4e45-bf71-07c1a1b8b8a4"), Name = "Kona", Brand = "Hyundai", Condition = "Mint", DatePurchased = new DateTime(2022, 4, 12), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1a23c4f6-7a4e-4f7b-83f4-6c4b8e7d9f1c"), Name = "CX-5", Brand = "Mazda", Condition = "Like New", DatePurchased = new DateTime(2021, 5, 18), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3b54c6a2-7f62-4b3a-8d2e-4b5c8a7e9f4e"), Name = "CX-9", Brand = "Mazda", Condition = "New", DatePurchased = new DateTime(2023, 2, 25), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5c6a8e9f-2b3d-4f5e-b8a7-9c1e3f2b7a4d"), Name = "CX-3", Brand = "Mazda", Condition = "Used", DatePurchased = new DateTime(2019, 8, 7), IsSold = true, DateSold = new DateTime(2023, 3, 30) },
+                new { Id = Guid.Parse("8e7a6f5c-3d2b-4a4e-b9f3-1c7d5b8a2f4c"), Name = "MX-5", Brand = "Mazda", Condition = "Mint", DatePurchased = new DateTime(2020, 6, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4f6a7e8b-1c2d-4b5e-8f3a-7d9c5b6a3e1c"), Name = "Outback", Brand = "Subaru", Condition = "Like New", DatePurchased = new DateTime(2021, 9, 19), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3d2b7f8a-4e5c-9b1f-6a7d-3e9f2a4b5c1e"), Name = "Forester", Brand = "Subaru", Condition = "New", DatePurchased = new DateTime(2022, 8, 23), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5e7b8a6c-2d3f-4b4a-9f3c-1e2d7a8f5c4b"), Name = "Impreza", Brand = "Subaru", Condition = "Used", DatePurchased = new DateTime(2018, 11, 20), IsSold = true, DateSold = new DateTime(2023, 4, 5) },
+                new { Id = Guid.Parse("1b2f3c7e-6a4d-4e5f-8b9c-7d2a9f4b6e3a"), Name = "Crosstrek", Brand = "Subaru", Condition = "Mint", DatePurchased = new DateTime(2020, 5, 27), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("6d4b7e5f-3a2c-4f9e-8a6d-1c3b9f7a2e5c"), Name = "Legacy", Brand = "Subaru", Condition = "Like New", DatePurchased = new DateTime(2021, 3, 15), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2a5d8e7b-4c3f-4a9f-6e7c-5b2d9f4a3e7c"), Name = "Q5", Brand = "Audi", Condition = "New", DatePurchased = new DateTime(2023, 7, 9), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9f3a6e5c-2d4b-7a1f-5c8e-3b2f7d9a4e1c"), Name = "Q7", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2022, 1, 11), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3e4d7a5c-2b1f-6f9e-8c2a-7f3d5b6a9e4b"), Name = "A4", Brand = "Audi", Condition = "Like New", DatePurchased = new DateTime(2021, 4, 13), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4b7e9a5d-1f3c-4e2f-9b6a-2c7d5f8a3e1c"), Name = "A6", Brand = "Audi", Condition = "New", DatePurchased = new DateTime(2023, 3, 17), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5d9a8e7c-3f1b-4c2f-6b7a-8d5f2a9e3c4b"), Name = "A8", Brand = "Audi", Condition = "Used", DatePurchased = new DateTime(2019, 5, 5), IsSold = true, DateSold = new DateTime(2023, 8, 21) },
+                new { Id = Guid.Parse("2e5c9f7b-3a4d-4b6a-8e2f-1c3f9d7a5b6e"), Name = "Q8", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2020, 10, 6), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7a4e5b6c-2f3d-4b9a-8f1e-6c5f9d2a3b7e"), Name = "Tiguan", Brand = "Volkswagen", Condition = "Like New", DatePurchased = new DateTime(2021, 11, 19), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9c3a8f2b-1d4e-5b7f-6a9e-4c2d7f1b3a6e"), Name = "Atlas", Brand = "Volkswagen", Condition = "New", DatePurchased = new DateTime(2023, 2, 1), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3f2e7d6a-1c4b-5f8a-9b7e-2d9f4c3a5e6b"), Name = "Jetta", Brand = "Volkswagen", Condition = "Used", DatePurchased = new DateTime(2019, 6, 7), IsSold = true, DateSold = new DateTime(2023, 5, 28) },
+                new { Id = Guid.Parse("7f3c2b5e-9a4d-8b6f-1e3a-5c7d9f2a6e1b"), Name = "Passat", Brand = "Volkswagen", Condition = "Mint", DatePurchased = new DateTime(2020, 7, 13), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("f0d3a2e9-1c6b-4b8f-9e7d-3a4f2c5e7b6a"), Name = "Golf", Brand = "Volkswagen", Condition = "Mint", DatePurchased = new DateTime(2022, 9, 17), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("b7f2c4e8-3a9b-4d1e-7c5f-8a9d2e6f3b4c"), Name = "Beetle", Brand = "Volkswagen", Condition = "Like New", DatePurchased = new DateTime(2021, 3, 22), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("c8a3b7e4-9d6f-4b1a-2e5c-7f4d3a2e9b6a"), Name = "Polo", Brand = "Volkswagen", Condition = "New", DatePurchased = new DateTime(2023, 1, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7e5a2c3d-9f1b-4b7e-6a3f-8d9f4a6c2b7e"), Name = "Touareg", Brand = "Volkswagen", Condition = "Used", DatePurchased = new DateTime(2019, 5, 30), IsSold = true, DateSold = new DateTime(2023, 6, 18) },
+                new { Id = Guid.Parse("1c3a7e5b-2d4f-9a6b-5e2c-3f4d9b7a1e6f"), Name = "Passat", Brand = "Volkswagen", Condition = "Mint", DatePurchased = new DateTime(2020, 8, 21), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5d4e7a2c-3b9f-4f1e-6c8a-9b7d2f3a4e1b"), Name = "T-Roc", Brand = "Volkswagen", Condition = "Like New", DatePurchased = new DateTime(2021, 4, 19), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3a7b6e5c-1d2f-9c4b-7f3a-2b5e9d4a6c1e"), Name = "Tiguan", Brand = "Volkswagen", Condition = "New", DatePurchased = new DateTime(2022, 10, 5), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2f5a4e3b-9d1c-7f6a-8b3e-4d9f2c7a5e1b"), Name = "Arteon", Brand = "Volkswagen", Condition = "Used", DatePurchased = new DateTime(2018, 6, 12), IsSold = true, DateSold = new DateTime(2022, 12, 29) },
+                new { Id = Guid.Parse("4e7b9a5c-3d1f-6b4e-8c2a-9d5f3a2b7e1c"), Name = "Atlas", Brand = "Volkswagen", Condition = "Mint", DatePurchased = new DateTime(2020, 11, 16), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5a3f7b4d-2e1c-9f8a-6b7e-3c4d9e2a5f1b"), Name = "Jetta", Brand = "Volkswagen", Condition = "Like New", DatePurchased = new DateTime(2021, 9, 23), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7d2e9f4a-1b3c-4f8a-9b5e-6a7f3c1d2b5e"), Name = "Golf R", Brand = "Volkswagen", Condition = "New", DatePurchased = new DateTime(2023, 3, 11), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9e5c7f3a-2b4e-8d1a-6f9b-3c2d7a4e5f1b"), Name = "Q3", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2022, 7, 20), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("8c3b5a7e-4d2f-9e1a-7f6b-2a4e9d3c5f7a"), Name = "Q5", Brand = "Audi", Condition = "Like New", DatePurchased = new DateTime(2021, 2, 28), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2b4e7f3a-5c1d-8f6a-9e2a-4d9c7b3e1f5a"), Name = "Q7", Brand = "Audi", Condition = "New", DatePurchased = new DateTime(2023, 1, 3), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4c7d9b2a-1f3e-5a6f-8e7b-9d3a5c2f1b4e"), Name = "A3", Brand = "Audi", Condition = "Used", DatePurchased = new DateTime(2018, 5, 19), IsSold = true, DateSold = new DateTime(2023, 6, 7) },
+                new { Id = Guid.Parse("3a2e5f7c-9d4b-8b1f-6a7e-2c4f3b9d5a7e"), Name = "A4", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2020, 8, 26), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5e9c7d4a-3f1b-2b8a-6c7e-1f5d4a7b2e9f"), Name = "A6", Brand = "Audi", Condition = "Like New", DatePurchased = new DateTime(2021, 6, 10), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7b3f5c2d-4e1a-8a7e-9f6b-2c3a9e4d7b5f"), Name = "A8", Brand = "Audi", Condition = "New", DatePurchased = new DateTime(2023, 4, 8), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4d7c2f9e-1a3b-5e8f-9a6c-3b5f7e4d2c1a"), Name = "Q8", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2022, 11, 4), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1b5f3a7d-2c4e-9b6a-8f3e-7d2e5c9a4f7b"), Name = "SQ5", Brand = "Audi", Condition = "Like New", DatePurchased = new DateTime(2021, 12, 25), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("8a3c6b4e-2d1f-7f9a-3e5b-1c4f7a9d5b2e"), Name = "Cayenne", Brand = "Porsche", Condition = "Mint", DatePurchased = new DateTime(2022, 7, 15), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3b2f5c7d-4e9a-8f1e-6c3a-7d9f2b4e5c1f"), Name = "Macan", Brand = "Porsche", Condition = "Like New", DatePurchased = new DateTime(2021, 11, 20), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5c1f7e4b-3a2d-9f6a-7e5b-2c4a9d3b7f2e"), Name = "Panamera", Brand = "Porsche", Condition = "New", DatePurchased = new DateTime(2023, 1, 9), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9d3a6f2b-5e1c-8b7e-4a2f-3c7f1a9d4e5b"), Name = "911", Brand = "Porsche", Condition = "Used", DatePurchased = new DateTime(2019, 6, 18), IsSold = true, DateSold = new DateTime(2023, 5, 3) },
+                new { Id = Guid.Parse("1a4e5c7b-9f3d-2f8a-6b7e-3c1f9d2a4f7b"), Name = "718 Boxster", Brand = "Porsche", Condition = "Mint", DatePurchased = new DateTime(2020, 10, 21), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("6d2b9a7f-4e1c-5b8e-3c2f-7a9d5c3f1b7e"), Name = "Taycan", Brand = "Porsche", Condition = "Like New", DatePurchased = new DateTime(2021, 8, 12), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4e1b7c9f-2a3f-6b5e-9d7e-3c4a8f2b1d5e"), Name = "Model X", Brand = "Tesla", Condition = "New", DatePurchased = new DateTime(2022, 4, 30), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7a9d5b3c-4f1e-2d6a-8c7f-3b2a9e1c5d7e"), Name = "Model 3", Brand = "Tesla", Condition = "Mint", DatePurchased = new DateTime(2023, 2, 17), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5e3a7b6c-2d4f-9a1f-8e7b-6c3d2a5f1e9b"), Name = "Model Y", Brand = "Tesla", Condition = "Used", DatePurchased = new DateTime(2018, 5, 24), IsSold = true, DateSold = new DateTime(2022, 11, 11) },
+                new { Id = Guid.Parse("2f1b8c3d-7a4e-6f9b-9e2a-4d5c3f7a6e1b"), Name = "Model S", Brand = "Tesla", Condition = "Like New", DatePurchased = new DateTime(2020, 9, 8), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("6e7b9f2a-3c1d-4f8a-5e2b-7f6c4a3d9b5e"), Name = "Roadster", Brand = "Tesla", Condition = "Mint", DatePurchased = new DateTime(2021, 3, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3c5e7d2a-4b1f-9f6b-7c8a-2e3d1a5f7b4e"), Name = "E-Tron", Brand = "Audi", Condition = "New", DatePurchased = new DateTime(2022, 12, 29), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("8f4a3c7e-2d9b-6f1e-3b5a-9c7f1e2d4b5e"), Name = "E-Tron GT", Brand = "Audi", Condition = "Mint", DatePurchased = new DateTime(2023, 4, 13), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1b9e6f2d-7c3a-4f5b-2e8a-5d9a3f7e4b1c"), Name = "Mustang Mach-E", Brand = "Ford", Condition = "Like New", DatePurchased = new DateTime(2021, 1, 27), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("4a2c9f7d-5e3b-8f1e-6b7c-3d4a9e1b2f6a"), Name = "F-150 Lightning", Brand = "Ford", Condition = "New", DatePurchased = new DateTime(2022, 6, 6), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7d9e4b3a-1f6c-8f5e-9b2a-3c7f2d5e1a4b"), Name = "Rivian R1T", Brand = "Rivian", Condition = "Used", DatePurchased = new DateTime(2018, 4, 21), IsSold = true, DateSold = new DateTime(2022, 7, 19) },
+                new { Id = Guid.Parse("5f1c8e3b-4a7d-9f2e-6b3a-8c7f9d4b1e2a"), Name = "Rivian R1S", Brand = "Rivian", Condition = "Mint", DatePurchased = new DateTime(2021, 11, 4), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2e1b9c7d-4a6f-5b8e-9d2c-3f7a5e4d1c3a"), Name = "Lucid Air", Brand = "Lucid", Condition = "Like New", DatePurchased = new DateTime(2022, 8, 16), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9c4b3a7e-1f5d-6b2e-8c9a-3e2d7f1a5b4e"), Name = "Lucid Gravity", Brand = "Lucid", Condition = "New", DatePurchased = new DateTime(2023, 3, 22), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7e3a9d2b-4c1f-6f8a-7b5e-2a4f5d6c9b1e"), Name = "I-Pace", Brand = "Jaguar", Condition = "Mint", DatePurchased = new DateTime(2020, 12, 30), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("a1e4d6f7-8b9c-4d2f-9e3a-5c6b7f8a1d2e"), Name = "Defender", Brand = "Land Rover", Condition = "Mint", DatePurchased = new DateTime(2022, 7, 20), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("f2b3c5d6-7e8a-4f9b-6c1d-9e4a3f7b2c8d"), Name = "Range Rover", Brand = "Land Rover", Condition = "Like New", DatePurchased = new DateTime(2021, 5, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7a4b5c6d-8e9f-1a2b-3c4d-5f6e7b8a9d1f"), Name = "Discovery", Brand = "Land Rover", Condition = "New", DatePurchased = new DateTime(2023, 1, 28), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3e4f2b1a-7c5d-9e8f-6b7a-1c2d3f4a5b6c"), Name = "Velar", Brand = "Land Rover", Condition = "Used", DatePurchased = new DateTime(2019, 9, 25), IsSold = true, DateSold = new DateTime(2023, 4, 2) },
+                new { Id = Guid.Parse("9b7f3a5c-1e4d-6c2a-7f9b-8d1e3c4a5f7b"), Name = "Range Rover Sport", Brand = "Land Rover", Condition = "Mint", DatePurchased = new DateTime(2020, 11, 7), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2c4f7e5d-8b9a-3a1e-4d2c-5f6b7a8e9f1b"), Name = "Range Rover Evoque", Brand = "Land Rover", Condition = "Like New", DatePurchased = new DateTime(2021, 3, 19), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("6d8f9b2c-3e4a-5f1d-7c6b-9a1f2b7e3c4a"), Name = "Cayman", Brand = "Porsche", Condition = "New", DatePurchased = new DateTime(2023, 2, 5), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3a4d5e7c-8f1b-9c2a-6f3e-7b1e9f2d4c5b"), Name = "Civic", Brand = "Honda", Condition = "Mint", DatePurchased = new DateTime(2022, 10, 18), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1b2c9a8f-3d5e-7f4a-6b1e-9c2f3a7d5e6b"), Name = "Accord", Brand = "Honda", Condition = "Like New", DatePurchased = new DateTime(2021, 6, 23), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9c8a7b5f-2d4e-3f6a-1c7b-4d9e5a2c3f1b"), Name = "CR-V", Brand = "Honda", Condition = "New", DatePurchased = new DateTime(2023, 4, 11), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("5f7a9c2e-1b4d-8f3a-6e2b-7d9f4a1c3e5b"), Name = "Pilot", Brand = "Honda", Condition = "Used", DatePurchased = new DateTime(2019, 7, 15), IsSold = true, DateSold = new DateTime(2023, 8, 20) },
+                new { Id = Guid.Parse("8e7f2d3a-4b5c-1e9a-7c6b-2f4a3d9e1f6b"), Name = "Odyssey", Brand = "Honda", Condition = "Mint", DatePurchased = new DateTime(2020, 9, 9), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("2b3f5d4a-9e1c-8a7e-6f2b-4d1e7a9c3f5e"), Name = "Ridgeline", Brand = "Honda", Condition = "Like New", DatePurchased = new DateTime(2021, 11, 26), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("9d4a7c5e-2f1b-3e9f-8a6b-1c5f7b2d3e4a"), Name = "Passport", Brand = "Honda", Condition = "New", DatePurchased = new DateTime(2022, 12, 2), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1c2f3d9b-4a5e-7f8a-6b1d-9e3a7b5c2e4f"), Name = "Corolla", Brand = "Toyota", Condition = "Mint", DatePurchased = new DateTime(2022, 8, 7), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("7f6b8e9a-1c4d-3a5e-9f2b-7e3a1b2c9f4d"), Name = "Camry", Brand = "Toyota", Condition = "Like New", DatePurchased = new DateTime(2021, 5, 22), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("6b9e7c1f-4a3d-2e5f-8b7a-3f4c9d2e1a5f"), Name = "Highlander", Brand = "Toyota", Condition = "New", DatePurchased = new DateTime(2023, 3, 14), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("3f7e1b9c-5a2d-4f6b-8c1e-7d2a4e5c9f3b"), Name = "4Runner", Brand = "Toyota", Condition = "Used", DatePurchased = new DateTime(2019, 2, 25), IsSold = true, DateSold = new DateTime(2023, 6, 30) },
+                new { Id = Guid.Parse("2c5e9f7a-3b1d-4a6f-8e2c-1b3f7a9d5e4b"), Name = "Tacoma", Brand = "Toyota", Condition = "Mint", DatePurchased = new DateTime(2020, 7, 10), IsSold = false, DateSold = (DateTime?)null },
+                new { Id = Guid.Parse("1d9b4e5a-2f7c-6b3e-9f1a-8c5f3d2a7e6b"), Name = "Tundra", Brand = "Toyota", Condition = "Like New", DatePurchased = new DateTime(2021, 10, 16), IsSold = false, DateSold = (DateTime?)null }
+            );
+        }
+    }
+}
