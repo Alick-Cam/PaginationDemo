@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pagination.Demo.Data;
 using Pagination.Demo.Helpers;
 using Pagination.Demo.Models;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Linq.Expressions;
 
 namespace Pagination.Demo.Controllers
@@ -19,6 +20,7 @@ namespace Pagination.Demo.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Retrieves cars in a paginated manner")]
         public ActionResult<IEnumerable<Car>> GetCars([FromQuery(Name = "page-number")] int pageNumber, [FromQuery(Name = "page-size")] int pageSize, [FromQuery] CarFilters filter)
         {
             if(pageSize <= 0)

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Pagination.Demo.Data;
+using System.Reflection;
 
 namespace Pagination.Demo
 {
@@ -16,7 +17,7 @@ namespace Pagination.Demo
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen( c =>
-                 c.EnableAnnotations()
+                c.EnableAnnotations()
             );
 
             builder.Services.AddRouting(options => options.LowercaseUrls = true);
